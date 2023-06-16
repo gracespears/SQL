@@ -1,0 +1,33 @@
+/* This project seeks to explore Netflix TV show and movie data and answer a few simple questions about some of the information. It was part of Charlotte Chaze's Break Into Tech Course.*/
+
+/*How many movie titles are there in the database? (movies only, not tv shows)*/
+SELECT count(*)
+FROM "netflix_titles_info"
+WHERE type='Movie';
+/*There are 8 movie titles*/
+
+/*When was the most recent batch of tv shows and/or movies added to the database?*/
+SELECT max(date(date_added))
+FROM "netflix_titles_info";
+/* The most recent batch was added September 25th 2021*/
+
+/*List all the movies and tv shows in alphabetical order.*/
+select title
+FROM "netflix_titles_info"
+ORDER BY title asc;
+
+/*Who was the Director for the movie The Starling?*/
+SELECT director
+FROM "netflix_titles_info" titles
+LEFT JOIN "netflix_people" people
+ON titles.show_id=people.show_id
+where titles.title='The Starling'
+/*Theodore Melfi directed The Starling*/
+
+/*What is the oldest movie in the database and what year was it made?*/
+select title, release_year
+FROM "netflix_titles_info"
+WHERE type='Movie'
+ORDER BY release_year asc
+LIMIT 1;
+/* The oldest movie in the database is Sankofa and it was released in 1993.*/
