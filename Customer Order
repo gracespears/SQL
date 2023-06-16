@@ -62,3 +62,51 @@ SELECT product, SUM(quantity)
 FROM BIT_DB.FebSales
 WHERE location like '%Los Angeles%'
 GROUP BY product
+
+/*Which locations in New York received at least 3 orders in January, and how many orders did they each receive?*/
+SELECT distinct location, count(orderID)
+FROM BIT_DB.JanSales
+WHERE location LIKE '%NY%'
+AND length(orderid) = 6
+AND orderid <> 'Order ID'
+GROUP BY location
+HAVING count(orderID) >2
+/*148 Elm St, New York City, NY 10001 (3 orders), 515 Lincoln St, New York City, NY 10001 (3 orders), 916 Pine St, New York City, NY 10001 (3 orders), and 961 Jefferson St, New York City, NY 10001 (4 orders)*/
+
+/*How many of each type of headphone was sold in February?*/
+SELECT sum(Quantity) as quantity, 
+product
+FROM BIT_DB.FebSales
+WHERE product LIKE '%Headphones%'
+GROUP BY product
+/*Apple Airpods - 1013, Bose SoundSport - 844, Wired - 1282*/
+
+/* What was the average amount spent per account in February?*/
+SELECT avg(quantity*price)
+FROM BIT_DB.FebSales Feb
+LEFT JOIN BIT_DB.customers cust
+ON FEB.orderid=cust.order_id
+WHERE length(orderid) = 6 
+AND orderid <> 'Order ID'
+/* The average amount spent per account in February was $190.00.*/
+
+/*What was the average quantity of products purchased per account in February?*/
+SELECT sum(quantity) /count(cust.acctnum)
+FROM BIT_DB.FebSales Feb
+LEFT JOIN BIT_DB.customers cust
+ON FEB.orderid=cust.order_id
+WHERE length(orderid) = 6
+AND orderid <> 'Order ID'
+/* The average quantity of products purchased per account in February was 1.*/
+
+/*Which product brought in the most revenue in January and how much revenue did it bring in total?*/
+SELECT product,
+sum(quantity*price)
+FROM BIT_DB.JanSales
+GROUP BY product
+ORDER BY sum(quantity*price) desc
+LIMIT 1
+/*The product that brought in the most revenue in January was the MacBook Pro Laptop and the total revenue it brought in was $399,500.*/
+
+
+
