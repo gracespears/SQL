@@ -1,0 +1,20 @@
+/* A quick little project from Khan Academy demonstrating how to create a table and select from it */
+CREATE TABLE catstore (id INTEGER PRIMARY KEY, name TEXT, color TEXT, price INTEGER, rating INTEGER);
+INSERT into catstore VALUES (1, "Collar", "Purple", 15, 3);
+INSERT into catstore VALUES (2, "Leash", "Pink", 12, 4);
+INSERT into catstore VALUES (3, "Brush", "Silver", 7, 5);
+INSERT into catstore VALUES (4, "Food Bowl", "Green", 5, 2);
+INSERT into catstore VALUES (5, "Water Bowl", "Teal", 8, 5);
+INSERT into catstore VALUES (6, "Fluffy Bed", "Grey", 25, 5);
+INSERT into catstore VALUES (7, "Cat Tree", "Beige", 90, 4);
+INSERT into catstore VALUES (8, "Wand Toy", "Rainbow", 2, 3);
+INSERT into catstore VALUES (9, "Mouse Toy", "Brown", 3, 4); 
+INSERT into catstore VALUES (10, "Catnip", "Green", 4, 1);
+INSERT into catstore VALUES (11, "Litter Box", "Silver", 45, 5);
+INSERT into catstore VALUES (12, "Corn Litter", "White", 30, 4);
+INSERT into catstore VALUES (13, "Scratching Post", "Brown", 25, 2);
+INSERT into catstore VALUES (14, "Blanket", "Rose", 10, 4);
+INSERT into catstore VALUES (15, "Wet Food", "Pink", 3, 5); 
+
+SELECT * FROM catstore ORDER BY price asc; 
+SELECT * FROM catstore ORDER BY color desc; 
